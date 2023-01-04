@@ -132,10 +132,11 @@ Following are the results obtained :-
 
 **Loss and Accuracy curves**
 
+![alt text](https://github.com/Shreets/Forest-Fire-Detection/blob/main/images/accuracy-curve-comb1.png)
 
 *Fiq. Accuracy curve for combination 1*
 
-
+![alt text](https://github.com/Shreets/Forest-Fire-Detection/blob/main/images/loss-curve-comb1.png)
 
 *Fig. Loss curve for combination 1*
 
@@ -147,8 +148,7 @@ The optimum accuracy score obtained for this combination after fine tuning the n
 **Confusion Matrix :-**
 Confusion Matrix for the three target labels in the context of this project is as follows,
 
-
-
+![alt text](https://github.com/Shreets/Forest-Fire-Detection/blob/main/images/confusion-matrix-comb1.png)
 
 
 As we can see from the above matrix, from a dataset of 694, most of the test instances are classified correctly. 286 of the fire images were classified as fire, 224 of the non-fire forest images were classified under the no-fire category, while the remaining 26 of the images which displayed initial stages of fire, were classified as start fire.
@@ -161,10 +161,11 @@ Following results are obtained :-
 
 **Loss and Accuracy curves**
 
+![alt text](https://github.com/Shreets/Forest-Fire-Detection/blob/main/images/acc-curve-comb1.png)
  
 *Fig. Accuracy curve for combination 2*
 
-
+![alt text](https://github.com/Shreets/Forest-Fire-Detection/blob/main/images/loss-comb2.png)
 
 *Fig. Loss curve for combination2*
 
@@ -176,6 +177,7 @@ We obtained an accuracy score of 77% using this model to make predictions on the
 **Confusion Matrix :-**
 Following confusion matrix is obtained,
 
+![alt text](https://github.com/Shreets/Forest-Fire-Detection/blob/main/images/confusion-comb2.png)
 
 From the above matrix we can say that the model has improved in its performance over the Fire and No Fire classes but has completely failed in identifying the start fire category. One of the reasons for this may be that the features involved in this combination mostly deal with the physical components of the image like shapes and structures. Out of 694 test instances, 283 of the fire images were classified as fire images and 252 of the non-fire images were classified under the no fire category. The third category, which is the start fire category, has failed miserably.
 
@@ -192,10 +194,11 @@ Following are the results obtained for this final model,
 
 **Loss and Accuracy curves :-**
 
+![alt text](https://github.com/Shreets/Forest-Fire-Detection/blob/main/images/acc-comb3.png)
 
 *Fig. Accuracy curve*
 
-
+![alt text](https://github.com/Shreets/Forest-Fire-Detection/blob/main/images/loss-comb3.png)
 
 *Fig. Loss curve*
                                                            
@@ -206,6 +209,8 @@ Based on the predictions of this model on an unseen test dataset, estimated accu
 
 **Confusion Matrix :-**
 Following is the confusion matrix obtained for this model’s predictions,
+
+![alt text](https://github.com/Shreets/Forest-Fire-Detection/blob/main/images/confusion-matrix-comb3.png)
 
 As we can see, the diagonal entries of the above matrix look very promising. Out of 694 test data samples, 309 which consisted of fire were predicted as Fire, 299 of no-fire images were predicted as no-fire and 25 of the images which displayed the initial stages of fire were classified under the Start Fire category.
 
