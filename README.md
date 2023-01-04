@@ -1,12 +1,17 @@
 # Forest-Fire-Detection
 
-The main idea behind this project is to enable detection of fire in the forested areas using deep learning and CNN architecture. The dataset consists of data with images labeled as ‘fire’ (for images with forest fire) and no fire (for images with normal vegetative lands). These images are used to train the model to recognize the pattern in images for the characteristics of forested areas with and without fire hazard occurrence. The model will however be tested on a real time video feed. A video input will further be segmented into images and fed into the model to make final evaluations. In implementing this project various feature engineering techniques will be explored to find the most effective and accurate solution. The image data set consists of multiple specific objects of which the significant ones must be selected for the model to be able to effectively identify and distinguish one condition shown in the image from another.
+The main idea behind this project is to enable detection of fire in the forested areas using deep learning and CNN architecture. The dataset consists of data with images labeled as ‘fire’ (for images with forest fire) , no fire (for images with normal vegetative lands) and start fire (fire just starting). These images are used to train the model to recognize the pattern in images for the characteristics of forested areas with and without fire hazard occurrence. The model is however being tested on a real time video feed. A video input is further be segmented into images and fed into the model to make final evaluations. In implementing this project various feature engineering techniques will be explored to find the most effective and accurate solution. The image data set consists of multiple specific objects of which the significant ones must be selected for the model to be able to effectively identify and distinguish one condition shown in the image from another.
+
+```
+**NOTE** [image_capture.py](https://github.com/Shreets/Forest-Fire-Detection/blob/main/image%20segmentation/image_capture.py) is the python sript used to segment the vidoes into images; frame-by-frame
+```
 
 ## Implementation
-Implementation has been done in multiple steps. Starting with  research where each of us looked into papers that worked on forest fires. We inferred  that transfer learning on the Inception V3 model would eventually give better results. Next we proceed with data analysis, here we have gone through images across different classes in the dataset and inferred that certain feature extraction techniques would improve the model at the end result. 
-We then worked on feature extraction techniques like edge detection, image segmentation, Noise filtering, Color Transformation ORB, Censure and corner detection e.t.c. After integrating and applying them to the dataset, we proceeded to build a basic transfer learning model on InceptionV3 with 50 epochs to test our architecture and test the model’s performance in this first phase of testing.
+Implementation has been done in multiple steps. To save time and resources transfer learning is being used on the Inception V3 model. 
+I proceed with data analysis, here I have gone through images across different classes in the dataset and inferred that certain feature extraction techniques would improve the model at the end result. 
+I then worked on feature extraction techniques like edge detection, image segmentation, Noise filtering, Color Transformation ORB, Censure and corner detection e.t.c. After integrating and applying them to the dataset, I proceeded to build a basic transfer learning model on InceptionV3 with 50 epochs to test our architecture and test the model’s performance in this first phase of testing.
 	
-In the second phase, we then experimented with feature engineering in order to achieve the optimum performance from the model. Several combinations of the extracted features were used to train the model separately. Based on the maximum performance recorded by the feature combination the final set of features were selected which for us was a combination of all the features, that was ; image segmentation, edge detection, key points detection, thresholding, censure detection, noise filtering and color transformation. 
+In the second phase, I then experimented with feature engineering in order to achieve the optimum performance from the model. Several combinations of the extracted features were used to train the model separately. Based on the maximum performance recorded by the feature combination the final set of features were selected which was the combination of all the features, i.e  `image segmentation, edge detection, key points detection, thresholding, censure detection, noise filtering and color transformation.`
 Further the model was tuned with varying the hyperparameters such as batch size, epocha, number of units. The recorded  accuracy and results for other performance metrics like ROC curve, confusion Matrix will be discussed further in the next section. These results were achieved after testing the integrated application with all possible scenarios of video footage captured during forest fires.
 
 
@@ -123,11 +128,11 @@ Censure feature detector detects the significant features and is highly used in 
 
 ## Feature Engineering and Model Training
 
-After trying out multiple combinations of features, the following two combinations have proven to be most effective.
+multiple combinations of features were combined and used to train the model, as discussed below.
 After a good amount of  research on the suitable metrics for the context of this project, the metrics we will be using to evaluate our models are Accuracy Score, Confusion Matrix, Precision-Recall-F1 Score.
 
 ### 1. Gaussian Noise Filter + Segmentation + LAB color space :-
-Herein, we stack the feature maps extracted from the Gaussian Noise filter, Segmentation filter and color components from LAB space feature extraction techniques and train our CNN architecture using this map. 
+Herein,  feature maps extracted from the Gaussian Noise filter, Segmentation filter and color components from LAB space feature extraction techniques were stacked and CNN architecture was trained using this map. 
 Following are the results obtained :-
 
 **Loss and Accuracy curves**
@@ -140,7 +145,7 @@ Following are the results obtained :-
 
 *Fig. Loss curve for combination 1*
 
-As usual, we can observe that the validation accuracy goes increasing as the network trains in identifying fire from the images.
+It can be can observed that the validation accuracy goes increasing as the network trains in identifying fire from the images.
 
 **Accuracy Score :- **
 The optimum accuracy score obtained for this combination after fine tuning the number of epochs, on an unseen test data set is 77.23%
@@ -156,7 +161,7 @@ Precision and Recall:-
 Precision and Recall values estimated for the model trained using this combination of features are 70% and 71% respectively, which is good enough compared to other combinations.
 
 ### 2. Edge Detection Sobel Filters + Gaussian Noise Filter + ORB Keypoins :-
-The next set of features we stack up are edges in the images using the sobel filters for horizontal and vertical edge detection in the images, gaussian noise filters to get rid of any noisy pixels in the images and smoothen them. The last feature we pick is the ORB keypoints detected in the images as these key points may carry vital information about the nature of fire or forest vegetation in the images.
+The next set of features stacked up were edges in the images using the sobel filters for horizontal and vertical edge detection in the images, gaussian noise filters to get rid of any noisy pixels in the images and smoothen them. The last feature we pick is the ORB keypoints detected in the images as these key points may carry vital information about the nature of fire or forest vegetation in the images.
 Following results are obtained :-
 
 **Loss and Accuracy curves**
@@ -185,9 +190,10 @@ Precision and Recall:-
 Precision and Recall values obtained for this model are 51% and 55% which is poor compared to the earlier combination, but holds a vital insight which will be discussed further in this report.
 
 ### 3. All Features combined :-
-Observing the results from both set of features, some of the conclusions we can draw are
-First set of features performs well on all three classes. The precision and recall values for the model convey the same story.
-Second set of features gives exceptionally good results on the Fire and No Fire classes but fails to predict any of the Start Fire instances.
+Observing the results from both set of features, some of the conclusions we can draw are 
+> First set of features performs well on all three classes. The precision and recall values for the model convey the same story.
+> Second set of features gives exceptionally good results on the Fire and No Fire classes but fails to predict any of the Start Fire instances.
+
 Combination of all the features would be a good option to go ahead with as it will combine the positives from both the models.
 Hence, the final model we train combines all the extracted features that are mentioned above in this report.
 Following are the results obtained for this final model,
@@ -216,5 +222,3 @@ As we can see, the diagonal entries of the above matrix look very promising. Out
 
 **Precision and Recall :-**
 Precision and Recall values for the model’s predictions also show a significant change from the earlier combinations. We achieve a precision value of 90% while a recall value of 81% for this model.
-
-
