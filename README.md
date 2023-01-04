@@ -2,9 +2,10 @@
 
 The main idea behind this project is to enable detection of fire in the forested areas using deep learning and CNN architecture. The dataset consists of data with images labeled as ‘fire’ (for images with forest fire) , no fire (for images with normal vegetative lands) and start fire (fire just starting). These images are used to train the model to recognize the pattern in images for the characteristics of forested areas with and without fire hazard occurrence. The model is however being tested on a real time video feed. A video input is further be segmented into images and fed into the model to make final evaluations. In implementing this project various feature engineering techniques will be explored to find the most effective and accurate solution. The image data set consists of multiple specific objects of which the significant ones must be selected for the model to be able to effectively identify and distinguish one condition shown in the image from another.
 
-```
-**NOTE** [image_capture.py](https://github.com/Shreets/Forest-Fire-Detection/blob/main/image%20segmentation/image_capture.py) is the python sript used to segment the vidoes into images; frame-by-frame
-```
+
+**NOTE** 
+[image_capture.py](https://github.com/Shreets/Forest-Fire-Detection/blob/main/image%20segmentation/image_capture.py) is the python sript used to segment the vidoes into images; frame-by-frame
+
 
 ## Implementation
 Implementation has been done in multiple steps. To save time and resources transfer learning is being used on the Inception V3 model. 
